@@ -25,7 +25,7 @@ import retrofit2.Response
 
 class AnomalyListsAct : AnomalyAct() {
 
-    private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+    private lateinit var mSectionsPagerAdapter: Any
     var service: RetrofitCalls? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,12 +48,11 @@ class AnomalyListsAct : AnomalyAct() {
                 AlertHelper.showToast(this@AnomalyListsAct, t.localizedMessage, true, R.drawable.ic_warning)
             }
         })
-        finishedLoadingEverything()
     }
 
     private fun gotSeriesList(seriesList: List<AnomalySeries>?) {
         if (seriesList != null) {
-            AnomalySeries.insertOrReplace(seriesList)
+            //AnomalySeries.insertOrReplace(seriesList)
             showProgress("Getting Anomaly History List...")
             val call = service?.allHistory()
             call?.enqueue(object : Callback<List<AnomalyHistory>> {
@@ -73,7 +72,7 @@ class AnomalyListsAct : AnomalyAct() {
 
     fun gotHistoryList(historyList: List<AnomalyHistory>?) {
         if (historyList != null) {
-            AnomalyHistory.insertOrReplace(historyList)
+            //AnomalyHistory.insertOrReplace(historyList)
             finishedLoadingEverything()
         } else
             AlertHelper.showGenericError(this)
@@ -81,7 +80,7 @@ class AnomalyListsAct : AnomalyAct() {
 
     fun finishedLoadingEverything() {
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
-        container.adapter = mSectionsPagerAdapter
+        container.adapter = mSectionsPagerAdapter as SectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
     }
