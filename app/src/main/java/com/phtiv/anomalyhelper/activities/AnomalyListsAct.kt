@@ -21,6 +21,10 @@ import kotlinx.android.synthetic.main.activity_anomaly_lists.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.raizlabs.android.dbflow.config.FlowManager
+import com.raizlabs.android.dbflow.structure.ModelAdapter
+
+
 
 class AnomalyListsAct : AnomalyAct() {
 
@@ -53,6 +57,10 @@ class AnomalyListsAct : AnomalyAct() {
     private fun gotSeriesList(seriesList: List<AnomalySeries>?) {
         if (seriesList != null) {
             //TODO greendao anomalyseries
+            //AnomalySeriesDB.getInstance().insertOrReplaceAll(seriesList)
+            AnomalySeries.insertOrReplace(seriesList)
+
+            val allSeries = AnomalySeries.getAll()
 
             showProgress("Getting Anomaly History List...")
             val call = service?.allHistory()
