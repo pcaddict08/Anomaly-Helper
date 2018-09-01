@@ -2,19 +2,13 @@ package com.phtiv.anomalyhelper.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.phtiv.anomalyhelper.R
-import com.phtiv.anomalyhelper.adapters.AnomalySeriesAdapter
-import kotlinx.android.synthetic.main.fragment_upcoming_anomaly_list.view.*
+import com.phtiv.anomalyhelper.models.AnomalyHistory
 import com.phtiv.anomalyhelper.models.AnomalySeries
-import com.phtiv.anomalyhelper.retrofit.RetrofitCalls
-import com.phtiv.anomalyhelper.retrofit.RetrofitClientInstance
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.android.synthetic.main.fragment_upcoming_anomaly_list.view.*
 
 
 /**
@@ -34,15 +28,15 @@ class UpcomingAnomalyFragment : Fragment() {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-
+            //setupAdapter(AnomalySeries.getUpcoming(), AnomalyHistory.getUpcoming())
         super.onActivityCreated(savedInstanceState)
     }
 
-    fun finishedLoading(list: List<AnomalySeries>?) {
-        if (list != null) {
-            view?.upcoming_recyclerview?.layoutManager = LinearLayoutManager(context)
-            if (view?.upcoming_recyclerview?.adapter == null)
-                view?.upcoming_recyclerview?.adapter = context?.let { AnomalySeriesAdapter(list, it) }
+    fun setupAdapter(seriesList: List<AnomalySeries>?, historyList: List<AnomalyHistory>?) {
+        if (seriesList != null && historyList != null) {
+            //view?.upcoming_recyclerview?.layoutManager = LinearLayoutManager(context)
+            //if (view?.upcoming_recyclerview?.adapter == null)
+            //    view?.upcoming_recyclerview?.adapter = context?.let { AnomalySeriesAdapter(seriesList, it) }
         }
     }
 

@@ -44,5 +44,19 @@ class AnomalyHistory () {
                     .from(AnomalyHistory::class.java)
                     .queryList()
         }
+
+        fun getUpcoming(): List<AnomalyHistory> {
+            return SQLite.select()
+                    .from(AnomalyHistory::class.java)
+                    .where(AnomalyHistory_Table.WINNER.`is`("N/A"))
+                    .queryList()
+        }
+
+        fun getPast(): List<AnomalyHistory> {
+            return SQLite.select()
+                    .from(AnomalyHistory::class.java)
+                    .where(AnomalyHistory_Table.WINNER.isNot("N/A"))
+                    .queryList()
+        }
     }
 }

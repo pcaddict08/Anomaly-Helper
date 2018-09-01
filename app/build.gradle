@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt' // required for kotlin.
 
 def dbflow_version = "4.2.4"
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -19,6 +20,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+kotlin {
+    experimental {
+        coroutines 'enable'
     }
 }
 

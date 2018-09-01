@@ -12,7 +12,7 @@ object AlertHelper {
     fun showToast(context: Context, string: String, warning: Boolean, icon: Int) {
         try {
             if (context is Activity)
-                (context as Activity).runOnUiThread {
+                context.runOnUiThread {
                     try {
                         if (warning)
                             StyleableToast.Builder(context)
@@ -30,6 +30,35 @@ object AlertHelper {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
 
+    fun showThrowableAlert(context: Context, t: Throwable) {
+        try {
+            if (context is Activity)
+                context.runOnUiThread {
+                    try {
+                        AlertHelper.showToast(context, t.localizedMessage, true, R.drawable.ic_warning)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun showGenericError(context: Context) {
+        try {
+            if (context is Activity)
+                context.runOnUiThread {
+                    try {
+                        AlertHelper.showToast(context, context.getString(R.string.generic_error), true, R.drawable.ic_warning)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

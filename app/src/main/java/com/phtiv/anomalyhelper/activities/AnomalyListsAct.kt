@@ -53,8 +53,6 @@ class AnomalyListsAct : AnomalyAct() {
 
     private fun gotSeriesList(seriesList: List<AnomalySeries>?) {
         if (seriesList != null) {
-            //TODO greendao anomalyseries
-            //AnomalySeriesDB.getInstance().insertOrReplaceAll(seriesList)
             AnomalySeries.insertOrReplace(seriesList)
             showProgress("Getting Anomaly History List...")
             val call = service?.allHistory()
@@ -66,11 +64,11 @@ class AnomalyListsAct : AnomalyAct() {
 
                 override fun onFailure(call: Call<List<AnomalyHistory>>, t: Throwable) {
                     dismissProgress()
-                    AlertHelper.showToast(this@AnomalyListsAct, t.localizedMessage, true, R.drawable.ic_warning)
+                    AlertHelper.showThrowableAlert(this@AnomalyListsAct, t)
                 }
             })
         } else
-            AlertHelper.showToast(this@AnomalyListsAct, "Something went wrong...", true, R.drawable.ic_warning)
+            AlertHelper.showGenericError(this)
     }
 
     fun gotHistoryList(historyList: List<AnomalyHistory>?) {
@@ -78,14 +76,10 @@ class AnomalyListsAct : AnomalyAct() {
             AnomalyHistory.insertOrReplace(historyList)
             finishedLoadingEverything()
         } else
-            AlertHelper.showToast(this@AnomalyListsAct, "Something went wrong...", true, R.drawable.ic_warning)
+            AlertHelper.showGenericError(this)
     }
 
     fun finishedLoadingEverything() {
-        val allHistory = AnomalyHistory.getAll()
-        val allSeries = AnomalySeries.getAll()
-        val pastSeries = AnomalySeries.getPast()
-        val futureSeries = AnomalySeries.getUpcoming()
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         container.adapter = mSectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
