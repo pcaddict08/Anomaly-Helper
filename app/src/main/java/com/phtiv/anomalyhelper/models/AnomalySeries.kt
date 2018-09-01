@@ -10,7 +10,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite
 
 
 
-@Table(database = AppDatabase::class)
+@Table(database = AppDatabase::class, name = "AnomalySeries_Table")
 class AnomalySeries {
     @PrimaryKey
     var ID: Int = 0
@@ -37,6 +37,20 @@ class AnomalySeries {
         fun getAll(): List<AnomalySeries> {
             return  SQLite.select()
                     .from(AnomalySeries::class.java)
+                    .queryList()
+        }
+
+        fun getUpcoming(): List<AnomalySeries> {
+            return SQLite.select()
+                    .from(AnomalySeries::class.java)
+                    .where(AnomalySeries_Table.WINNER.`is`("N/A"))
+                    .queryList()
+        }
+
+        fun getPast(): List<AnomalySeries> {
+            return SQLite.select()
+                    .from(AnomalySeries::class.java)
+                    .where(AnomalySeries_Table.WINNER.isNot("N/A"))
                     .queryList()
         }
     }

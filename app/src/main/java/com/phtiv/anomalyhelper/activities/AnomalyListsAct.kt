@@ -21,9 +21,6 @@ import kotlinx.android.synthetic.main.activity_anomaly_lists.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.raizlabs.android.dbflow.config.FlowManager
-import com.raizlabs.android.dbflow.structure.ModelAdapter
-
 
 
 class AnomalyListsAct : AnomalyAct() {
@@ -59,9 +56,6 @@ class AnomalyListsAct : AnomalyAct() {
             //TODO greendao anomalyseries
             //AnomalySeriesDB.getInstance().insertOrReplaceAll(seriesList)
             AnomalySeries.insertOrReplace(seriesList)
-
-            val allSeries = AnomalySeries.getAll()
-
             showProgress("Getting Anomaly History List...")
             val call = service?.allHistory()
             call?.enqueue(object : Callback<List<AnomalyHistory>> {
@@ -80,13 +74,18 @@ class AnomalyListsAct : AnomalyAct() {
     }
 
     fun gotHistoryList(historyList: List<AnomalyHistory>?) {
-        //TODO greendao anomalyhistory
-
-        val testSeries = AnomalySeries()
-        finishedLoadingEverything()
+        if (historyList != null) {
+            AnomalyHistory.insertOrReplace(historyList)
+            finishedLoadingEverything()
+        } else
+            AlertHelper.showToast(this@AnomalyListsAct, "Something went wrong...", true, R.drawable.ic_warning)
     }
 
     fun finishedLoadingEverything() {
+        val allHistory = AnomalyHistory.getAll()
+        val allSeries = AnomalySeries.getAll()
+        val pastSeries = AnomalySeries.getPast()
+        val futureSeries = AnomalySeries.getUpcoming()
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         container.adapter = mSectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
