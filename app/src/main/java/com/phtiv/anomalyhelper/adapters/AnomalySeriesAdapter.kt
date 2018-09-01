@@ -27,8 +27,8 @@ class AnomalySeriesAdapter(private val list: List<AnomalySeries>, private val co
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val store = list[position]
-        holder.namelabel_storerow.setText(store.NAME)
+        val series = list[position]
+        holder.namelabel_storerow.text = series.name
     }
 
     // Return the size of your dataset (invoked by the layout manager)

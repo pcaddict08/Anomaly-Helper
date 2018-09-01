@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.phtiv.anomalyhelper.AnomalyAct
@@ -52,7 +51,7 @@ class AnomalyListsAct : AnomalyAct() {
     }
 
     private fun gotSeriesList(seriesList: List<AnomalySeries>?) {
-        if (seriesList == null) {
+        if (seriesList != null) {
             //TODO greendao anomalyseries
 
             showProgress("Getting Anomaly History List...")
@@ -73,7 +72,9 @@ class AnomalyListsAct : AnomalyAct() {
     }
 
     fun gotHistoryList(historyList: List<AnomalyHistory>?) {
+        //TODO greendao anomalyhistory
 
+        val testSeries = AnomalySeries()
         finishedLoadingEverything()
     }
 
