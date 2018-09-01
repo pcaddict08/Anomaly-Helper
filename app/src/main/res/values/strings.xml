@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Anomaly Helper</string>
+    <string name="n_a">N/A</string>
+    <string name="title_activity_anomaly_lists">AnomalyListsAct</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="upcoming_anomalies">Upcoming Anomalies</string>
+    <string name="past_anomalies">Past Anomalies</string>
+</resources>
