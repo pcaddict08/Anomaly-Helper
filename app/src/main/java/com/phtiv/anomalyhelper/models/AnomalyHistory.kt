@@ -1,6 +1,8 @@
 package com.phtiv.anomalyhelper.models
 
-class AnomalyHistory () {
+import java.io.Serializable
+
+class AnomalyHistory : Serializable {
         var ID: Int = 0
         var DATE: String = ""
         var LOCATION: String = ""

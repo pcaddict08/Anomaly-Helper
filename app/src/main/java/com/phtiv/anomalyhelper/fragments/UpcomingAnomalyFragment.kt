@@ -46,7 +46,8 @@ class UpcomingAnomalyFragment : Fragment() {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        fun newInstance(): UpcomingAnomalyFragment {
+        fun newInstance(seriesList: List<AnomalySeries>?): UpcomingAnomalyFragment {
+
             return UpcomingAnomalyFragment()
         }
     }

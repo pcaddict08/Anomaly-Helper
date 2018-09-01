@@ -58,7 +58,7 @@ class AnomalyListsAct : AnomalyAct() {
             call?.enqueue(object : Callback<List<AnomalyHistory>> {
                 override fun onResponse(call: Call<List<AnomalyHistory>>, response: Response<List<AnomalyHistory>>) {
                     dismissProgress()
-                    gotHistoryList(response.body())
+                    gotHistoryList(seriesList, response.body())
                 }
 
                 override fun onFailure(call: Call<List<AnomalyHistory>>, t: Throwable) {
@@ -70,16 +70,16 @@ class AnomalyListsAct : AnomalyAct() {
             AlertHelper.showGenericError(this)
     }
 
-    fun gotHistoryList(historyList: List<AnomalyHistory>?) {
+    fun gotHistoryList(seriesList: List<AnomalySeries>, historyList: List<AnomalyHistory>?) {
         if (historyList != null) {
             //AnomalyHistory.insertOrReplace(historyList)
-            finishedLoadingEverything()
+            finishedLoadingEverything(seriesList)
         } else
             AlertHelper.showGenericError(this)
     }
 
-    fun finishedLoadingEverything() {
-        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+    fun finishedLoadingEverything(seriesList: List<AnomalySeries>) {
+        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, seriesList)
         container.adapter = mSectionsPagerAdapter as SectionsPagerAdapter
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
@@ -107,10 +107,13 @@ class AnomalyListsAct : AnomalyAct() {
      * one of the sections/tabs/pages.
      */
     inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-
+        constructor(fm: FragmentManager, series: List<AnomalySeries>) : this(fm) {
+            seriesList = series
+        }
+        var seriesList: List<AnomalySeries>? = null
         override fun getItem(position: Int): Fragment {
             if (position == 0) {
-                return UpcomingAnomalyFragment.newInstance()
+                return UpcomingAnomalyFragment.newInstance(seriesList)
             } else if (position == 1) {
                 return PastAnomalyFragmentFragment.newInstance()
             } else

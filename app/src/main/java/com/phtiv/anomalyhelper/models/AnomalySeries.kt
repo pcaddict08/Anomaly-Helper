@@ -1,6 +1,8 @@
 package com.phtiv.anomalyhelper.models
 
-class AnomalySeries {
+import java.io.Serializable
+
+class AnomalySeries : Serializable {
     var ID: Int = 0
     var NAME: String = ""
     var ENL_SCORE: String = ""
