@@ -2,7 +2,7 @@ package com.phtiv.anomalyhelper.models
 
 import java.io.Serializable
 
-class AnomalyHistory : Serializable {
+class AnomalyEvent : Serializable {
         var ID: Int = 0
         var DATE: String = ""
         var LOCATION: String = ""

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.phtiv.anomalyhelper.R
-import kotlinx.android.synthetic.main.fragment_anomaly_lists.view.*
+import kotlinx.android.synthetic.main.fragment_placeholder.view.*
 
 /**
  * A placeholder fragment containing a simple view.
@@ -15,7 +15,7 @@ class PlaceholderFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_anomaly_lists, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_placeholder, container, false)
         rootView.section_label.text = getString(R.string.section_format, arguments?.getInt(ARG_SECTION_NUMBER))
         return rootView
     }

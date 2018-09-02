@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.phtiv.anomalyhelper.R
-import kotlinx.android.synthetic.main.fragment_anomaly_lists.view.*
+import com.phtiv.anomalyhelper.models.AnomalySeries
 
 /**
  * A placeholder fragment containing a simple view.
@@ -15,9 +15,14 @@ class PastAnomalyFragmentFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_anomaly_lists, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_anomaly_list_layout, container, false)
         //TODO SET UP UI HERE
         return rootView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        AnomalySeries.handleSeriesRequest(view, AnomalySeries.CREATOR.Type.PAST)
+        super.onActivityCreated(savedInstanceState)
     }
 
     companion object {
