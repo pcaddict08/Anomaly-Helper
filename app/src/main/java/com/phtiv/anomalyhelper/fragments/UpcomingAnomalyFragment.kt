@@ -2,6 +2,7 @@ package com.phtiv.anomalyhelper.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -27,10 +28,7 @@ class UpcomingAnomalyFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_anomaly_list_layout, container, false)
-        rootView.upcoming_map_button?.setOnClickListener {
-            //TODO OPEN MAP VIEW
-        }
-
+        ViewCompat.setNestedScrollingEnabled(rootView.recyclerview, false)
         return rootView
     }
 

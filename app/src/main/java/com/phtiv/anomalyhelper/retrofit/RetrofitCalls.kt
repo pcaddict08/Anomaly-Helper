@@ -4,6 +4,7 @@ import com.phtiv.anomalyhelper.models.AnomalyEvent
 import com.phtiv.anomalyhelper.models.AnomalySeries
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface RetrofitCalls {
@@ -19,4 +20,7 @@ interface RetrofitCalls {
 
     @GET("upcomingseries.json")
     fun upcomingSeries(): Call<List<AnomalySeries>>
+
+    @GET("?action=get_events")
+    fun getEventByID(@Query("anomID") anomID: Int ): Call<List<AnomalyEvent>>
 }

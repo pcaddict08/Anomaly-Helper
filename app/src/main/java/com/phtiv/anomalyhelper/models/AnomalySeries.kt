@@ -1,8 +1,12 @@
 package com.phtiv.anomalyhelper.models
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Parcel
 import android.os.Parcelable
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.phtiv.anomalyhelper.R
 import com.phtiv.anomalyhelper.adapters.AnomalySeriesAdapter
@@ -14,6 +18,9 @@ import kotlinx.android.synthetic.main.fragment_anomaly_list_layout.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.widget.AdapterView.OnItemClickListener
+
+
 
 class AnomalySeries() : Parcelable {
     var ID: Int = 0
@@ -42,6 +49,15 @@ class AnomalySeries() : Parcelable {
         return 0
     }
 
+    fun getIconDrawable(context: Context): Drawable? {
+        if (WINNER.equals("RES", true))
+            return ContextCompat.getDrawable(context, R.drawable.ic_medal_blue)
+        else if (WINNER.equals("ENL", true))
+            return ContextCompat.getDrawable(context, R.drawable.ic_medal_green)
+        else
+            return ContextCompat.getDrawable(context, R.drawable.ic_medal)
+    }
+
     companion object CREATOR : Parcelable.Creator<AnomalySeries> {
 
         fun handleSeriesRequest(view: View?, type: Type) {
@@ -65,10 +81,10 @@ class AnomalySeries() : Parcelable {
         fun setupRecyclerViewAdapter(list: List<AnomalySeries>?, view: View?) {
             ProgressHelper.dismissProgress(view?.findViewById(R.id.progress))
             if (list != null) {
-                view?.upcoming_recyclerview?.layoutManager = LinearLayoutManager(view?.context)
-                view?.upcoming_recyclerview?.visibility = View.VISIBLE
-                if (view?.upcoming_recyclerview?.adapter == null)
-                    view?.upcoming_recyclerview?.adapter = view?.context?.let { AnomalySeriesAdapter(list, it) }
+                view?.recyclerview?.layoutManager = LinearLayoutManager(view?.context)
+                view?.recyclerview?.visibility = View.VISIBLE
+                if (view?.recyclerview?.adapter == null)
+                    view?.recyclerview?.adapter = view?.context?.let { AnomalySeriesAdapter(list, it) }
             }
         }
 
