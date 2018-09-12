@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.phtiv.anomalyhelper.R
+import com.phtiv.anomalyhelper.activities.AnomalyEventListAct
 import com.phtiv.anomalyhelper.activities.AnomalyListsAct
 import com.phtiv.anomalyhelper.models.AnomalyEvent
 import com.phtiv.anomalyhelper.models.AnomalySeries
@@ -20,7 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class AnomalySeriesAdapter(private val list: List<AnomalySeries>, private val context: Context) : RecyclerView.Adapter<AnomalySeriesAdapter.ViewHolder>() {
+class AnomalyEventsAdapter(private val list: List<AnomalyEvent>, private val context: Context) : RecyclerView.Adapter<AnomalyEventsAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
@@ -36,18 +37,19 @@ class AnomalySeriesAdapter(private val list: List<AnomalySeries>, private val co
     }
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): AnomalySeriesAdapter.ViewHolder {
+                                    viewType: Int): AnomalyEventsAdapter.ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.row_anomalyseries, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val series = list[position]
-        holder.namelabel_storerow.text = series.NAME
-        holder.medalicon_anomalyseriesrow.setImageDrawable(series.getIconDrawable(context))
+        val event = list[position]
+        holder.namelabel_storerow.text = event.LOCATION.CITY
+        holder.medalicon_anomalyseriesrow.setImageDrawable(event.getIconDrawable(context))
         holder.base_layout.setOnClickListener({ it ->
             val context = it.context;
-            if (context is AnomalyListsAct) {
-                context.tappedSeries(series)
+            if (context is AnomalyEventListAct) {
+                //TODO do something here
+                //context.tappedSeries(series)
             }
         })
     }

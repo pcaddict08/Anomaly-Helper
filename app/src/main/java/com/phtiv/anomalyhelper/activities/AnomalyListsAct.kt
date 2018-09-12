@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewCompat
 import android.view.Menu
 import android.view.MenuItem
 import com.phtiv.anomalyhelper.AnomalyAct
@@ -13,7 +12,15 @@ import com.phtiv.anomalyhelper.R
 import com.phtiv.anomalyhelper.fragments.PastAnomalyFragmentFragment
 import com.phtiv.anomalyhelper.fragments.PlaceholderFragment
 import com.phtiv.anomalyhelper.fragments.UpcomingAnomalyFragment
+import com.phtiv.anomalyhelper.models.AnomalyEvent
+import com.phtiv.anomalyhelper.models.AnomalySeries
+import com.phtiv.anomalyhelper.retrofit.RetrofitCalls
+import com.phtiv.anomalyhelper.retrofit.RetrofitClientInstance
+import com.phtiv.anomalyhelper.utils.AlertHelper
 import kotlinx.android.synthetic.main.activity_anomaly_lists.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class AnomalyListsAct : AnomalyAct() {
@@ -49,6 +56,23 @@ class AnomalyListsAct : AnomalyAct() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    fun tappedSeries(series: AnomalySeries) {
+        showProgress("Looking Up Events...")
+        val service = RetrofitClientInstance.retrofitInstance?.create<RetrofitCalls>(RetrofitCalls::class.java)
+        val call = service?.getEventByID(series.ID)
+        call?.enqueue(object : Callback<List<AnomalyEvent>> {
+            override fun onResponse(call: Call<List<AnomalyEvent>>, response: Response<List<AnomalyEvent>>) {
+                dismissProgress()
+                startActivity(response.body()?.let { AnomalyEventListAct.newIntent(this@AnomalyListsAct, it as ArrayList<AnomalyEvent>, series) })
+            }
+
+            override fun onFailure(call: Call<List<AnomalyEvent>>, t: Throwable) {
+                AlertHelper.showToast(this@AnomalyListsAct, t.localizedMessage, true, R.drawable.ic_warning)
+                dismissProgress()
+            }
+        })
     }
 
 

@@ -21,7 +21,6 @@ import retrofit2.Response
 import android.widget.AdapterView.OnItemClickListener
 
 
-
 class AnomalySeries() : Parcelable {
     var ID: Int = 0
     var NAME: String = ""
@@ -56,6 +55,22 @@ class AnomalySeries() : Parcelable {
             return ContextCompat.getDrawable(context, R.drawable.ic_medal_green)
         else
             return ContextCompat.getDrawable(context, R.drawable.ic_medal)
+    }
+
+    fun getTitleString(context: Context, type: TITLETYPE): String {
+        var title = context.getString(R.string.app_name)
+        try{
+            var typeSection = ""
+            when (type) {
+                TITLETYPE.EVENTLIST -> {
+                    typeSection = " - Events"
+                }
+            }
+            title = NAME + " " + typeSection
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return title
     }
 
     companion object CREATOR : Parcelable.Creator<AnomalySeries> {
@@ -102,6 +117,10 @@ class AnomalySeries() : Parcelable {
         override fun newArray(size: Int): Array<AnomalySeries?> {
             return arrayOfNulls(size)
         }
+    }
+
+    enum class TITLETYPE{
+        EVENTLIST
     }
 
 }
