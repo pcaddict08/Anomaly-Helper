@@ -24,7 +24,7 @@ class AnomalyEvent(
         @SerializedName("ENL_SCORE") var ENL_SCORE: String = "",
         @SerializedName("WINNER") var WINNER: String = "",
         @SerializedName("TYPE") var TYPE: String = ""
-) : Parcelable{
+) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readInt(),

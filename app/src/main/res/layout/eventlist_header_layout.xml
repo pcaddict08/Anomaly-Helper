@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/cell_shape"
+    android:orientation="vertical"
+    android:padding="10dip">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/eventlist_iconlayout"
+            android:layout_width="70dip"
+            android:layout_height="70dip"
+            android:background="@drawable/cell_shape">
+
+            <ImageView
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:contentDescription="@string/todo"
+                android:foregroundGravity="center"
+                android:padding="10dip"
+                android:src="@drawable/ic_xm_anom" />
+
+            <ImageView
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/cell_shape"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_medal" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/eventlist_titlelabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dip"
+                android:text="@string/n_a"
+                android:textAppearance="?android:textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/eventlist_datelabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dip"
+                android:text="@string/n_a"
+                android:textAppearance="?android:textAppearanceMedium" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dip"
+        android:layout_marginTop="5dip"
+        android:background="@color/black">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dip"
+            android:gravity="center"
+            android:text="@string/n_a"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dip"
+        android:layout_marginTop="5dip"
+        android:background="@color/black">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dip"
+            android:gravity="center"
+            android:text="@string/n_a"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</LinearLayout>

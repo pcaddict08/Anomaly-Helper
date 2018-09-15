@@ -63,3 +63,9 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+app/src/main/java/com/phtiv/anomalyhelper/fancyutils/PresenterUtils.java
+app/src/main/java/com/phtiv/anomalyhelper/fancyutils/DateUtils.java
+app/src/main/java/com/phtiv/anomalyhelper/fancyutils/DebounceUtils.java
+app/src/main/java/com/phtiv/anomalyhelper/fancyutils/DigitsOnlyInputFilter.java
+app/src/main/java/com/phtiv/anomalyhelper/fancyutils/LocalizationUtils.java
+app/src/main/java/com/phtiv/anomalyhelper/fancyutils/NoSpacesAllowedInputFilter.java

@@ -10,5 +10,12 @@
     <string name="upcoming_anomalies">Upcoming Anomalies</string>
     <string name="past_anomalies">Past Anomalies</string>
     <string name="generic_error">Something went wrong…</string>
+    <string name="todo">TODO</string>
+
+
+    <!-- Reservation -->
+    <string name="reservation_date_range">%1$s %2$d - %3$d</string>
+    <string name="reservation_date_range_with_second_month">%1$s %2$d - %3$s %4$d</string>
+    <string name="reservation_date_range_oneway">%1$s %2$d</string>
 
 </resources>
