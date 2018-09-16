@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@drawable/cell_shape">
+    android:background="@drawable/cell_shape_gray">
 
     <LinearLayout
         android:layout_centerInParent="true"
@@ -19,7 +19,7 @@
             android:id="@+id/title_dialogprogress"
             android:layout_width="wrap_content"
             android:paddingLeft="5dip"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceMedium"
             android:text="Loading..."/>

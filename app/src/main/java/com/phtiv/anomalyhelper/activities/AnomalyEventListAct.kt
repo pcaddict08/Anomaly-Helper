@@ -23,8 +23,8 @@ class AnomalyEventListAct : AnomalyAct() {
         eventList = intent.getParcelableArrayListExtra(INTENT_EVENTLIST)
         parent = intent.getParcelableExtra(INTENT_PARENT)
 
-        ThemeHelper.initActionBar(supportActionBar, parent.getTitleString(this, AnomalySeries.TITLETYPE.EVENTLIST))
-        var inflater = LayoutInflater.from(this)
+        ThemeHelper.initActionBar(supportActionBar, parent.getTitleString(this, AnomalySeries.TITLETYPE.EVENTLIST, isSimple = true))
+        val inflater = LayoutInflater.from(this)
         if (inflater != null)
         {
             val headerView = EventListHeaderPresenter.createInstance(inflater, eventlist_header_layout, parent).second

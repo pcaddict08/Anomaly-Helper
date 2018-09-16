@@ -18,8 +18,8 @@
     <color name="lightgray">#daddde</color>
     <color name="algae">#CFE3BD</color>
     <color name="tan">#FFDDA6</color>
-    <color name="darkdarkgreen">#136717</color>
-    <color name="darkgreen">#2D8C34</color>
+    <color name="darkgreen">#136717</color>
+    <color name="mediumgreen">#2D8C34</color>
     <color name="lightgreen">#6cbd74</color>
     <color name="panic">#c00</color>
     <color name="paniclite">#f5cccc</color>
@@ -27,4 +27,15 @@
     <color name="mediumorange">#cd761b</color>
     <color name="darkorange">#a53602</color>
 
+    <color name="lightestgray">#999999</color>
+    <color name="lightergray">#777777</color>
+    <color name="gray">#555555</color>
+    <color name="darkergray">#333333</color>
+    <color name="darkestgray">#111111</color>
+
+
+    <color name="barbg">#202020</color>
+    <color name="barfore">#343434</color>
+    <color name="barenl">#58b750</color>
+    <color name="barres">#408ebe</color>
 </resources>

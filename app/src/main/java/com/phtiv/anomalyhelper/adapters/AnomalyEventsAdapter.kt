@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.phtiv.anomalyhelper.R
 import com.phtiv.anomalyhelper.activities.AnomalyEventListAct
@@ -28,16 +29,18 @@ class AnomalyEventsAdapter(private val list: List<AnomalyEvent>, private val con
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         // each data item is just a string in this case
         var namelabel_anomalyeventsrow: TextView
-        var medalicon_anomalyeventsrow: ImageView
-        var winnerscorelabel_anomalyeventsrow: TextView
-        var loserscorelabel_anomalyeventsrow: TextView
+        var enlScore: TextView
+        var resScore: TextView
         var base_layout: LinearLayout
+        var enlLayout: RelativeLayout
+        var resLayout: RelativeLayout
 
         init {
-            medalicon_anomalyeventsrow = v.findViewById(R.id.medalicon_anomalyeventsrow)
             namelabel_anomalyeventsrow = v.findViewById(R.id.namelabel_anomalyeventsrow)
-            winnerscorelabel_anomalyeventsrow = v.findViewById(R.id.winnerscorelabel_anomalyeventsrow)
-            loserscorelabel_anomalyeventsrow = v.findViewById(R.id.loserscorelabel_anomalyeventsrow)
+            enlScore = v.findViewById(R.id.anomalyeventsrow_enlscore)
+            resScore = v.findViewById(R.id.anomalyeventsrow_resscore)
+            enlLayout = v.findViewById(R.id.anomalyeventsrow_enlscorebg)
+            resLayout = v.findViewById(R.id.anomalyeventsrow_resscorebg)
             base_layout = v as LinearLayout
         }
     }
@@ -49,15 +52,9 @@ class AnomalyEventsAdapter(private val list: List<AnomalyEvent>, private val con
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = list[position]
-        val winnerColor = ContextCompat.getColor(context, GeneralUtil.getWinningColor(event.WINNER))
-        val loserColor = ContextCompat.getColor(context, GeneralUtil.getLoserColor(event.WINNER))
         holder.namelabel_anomalyeventsrow.text = event.LOCATION.CITY
-        holder.namelabel_anomalyeventsrow.setTextColor(winnerColor)
-        holder.medalicon_anomalyeventsrow.setImageDrawable(event.getIconDrawable(context))
-        holder.winnerscorelabel_anomalyeventsrow.setTextColor(winnerColor)
-        holder.winnerscorelabel_anomalyeventsrow.text = GeneralUtil.getWinningScore(event.WINNER, event.RES_SCORE, event.ENL_SCORE)
-        holder.loserscorelabel_anomalyeventsrow.setTextColor(loserColor)
-        holder.loserscorelabel_anomalyeventsrow.text = GeneralUtil.getLosingScore(event.WINNER, event.RES_SCORE, event.ENL_SCORE)
+        AnomalySeries.formatScoreBar(event, holder.enlLayout, holder.enlScore, holder.resLayout, holder.resScore)
+
         holder.base_layout.setOnClickListener({ it ->
             val context = it.context;
             if (context is AnomalyEventListAct) {
