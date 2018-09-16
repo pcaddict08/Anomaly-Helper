@@ -51,7 +51,8 @@ class AnomalyListsAct : AnomalyAct() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
+            AlertHelper.showToast(this, "Not Yet Implemented. Check Back Later.", true, R.drawable.ic_warning)
             return true
         }
 
